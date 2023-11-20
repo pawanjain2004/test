@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pie Charts</title>
+  <style>
+    body {
+      background-image: url('bg.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #header {
+      text-align: center;
+      padding: 20px 0;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #333;
+    }
+
+    #charts-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      padding: 20px;
+      width: 80%;
+      max-width: 1200px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .piechart {
+      width: 300px;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <h1>Pie Charts</h1>
+  </div>
+  <div id="charts-container">
+    <!-- Humidity pie chart -->
+    <div id="humidity-piechart" class="piechart"></div>
+
+    <!-- Temperature pie chart -->
+    <div id="temperature-piechart" class="piechart"></div>
+
+    <!-- Distance pie chart -->
+    <div id="distance-piechart" class="piechart"></div>
+  </div>
+
+  <!-- JavaScript to draw the charts -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    // Load google charts
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawCharts);
+
+    // Draw the charts
+    function drawCharts() {
+      // Humidity pie chart
+      var humidityData = google.visualization.arrayToDataTable([
+        ['Item', 'Percentage'],
+        ['Low', 30],
+        ['Medium', 50],
+        ['High', 20]
+      ]);
+
+      var humidityOptions = {
+        title: 'Humidity',
+        pieHole: 0.4,
+        backgroundColor: 'transparent'
+      };
+
+      var humidityChart = new google.visualization.PieChart(document.getElementById('humidity-piechart'));
+      humidityChart.draw(humidityData, humidityOptions);
+
+      // Temperature pie chart
+      var temperatureData = google.visualization.arrayToDataTable([
+        ['Item', 'Percentage'],
+        ['Cold', 20],
+        ['Warm', 60],
+        ['Hot', 20]
+      ]);
+
+      var temperatureOptions = {
+        title: 'Temperature',
+        pieHole: 0.4,
+        backgroundColor: 'transparent'
+      };
+
+      var temperatureChart = new google.visualization.PieChart(document.getElementById('temperature-piechart'));
+      temperatureChart.draw(temperatureData, temperatureOptions);
+
+      // Distance pie chart
+      var distanceData = google.visualization.arrayToDataTable([
+        ['Item', 'Percentage'],
+        ['Close', 40],
+        ['Medium', 30],
+        ['Far', 30]
+      ]);
+
+      var distanceOptions = {
+        title: 'Distance',
+        pieHole: 0.4,
+        backgroundColor: 'transparent'
+      };
+
+      var distanceChart = new google.visualization.PieChart(document.getElementById('distance-piechart'));
+      distanceChart.draw(distanceData, distanceOptions);
+    }
+  </script>
+</body>
+</html>
